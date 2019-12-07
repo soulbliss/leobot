@@ -1,1 +1,1 @@
-web: python merger.py
+worker: python merger.py
