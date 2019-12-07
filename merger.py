@@ -57,8 +57,14 @@ def tio_push_notifs():
         assert tfwm['message']['text'] == 'Deeps, whats the Tio for the week, eh?'
 
 
-    schedule.every(30).seconds.do(tio_for_week_message)
-    schedule.every(120).seconds.do(think_ten_ideas_send_message)
+    schedule.every().monday.at("17:15").do(think_ten_ideas_send_message)
+    schedule.every().wednesday.at("17:15").do(think_ten_ideas_send_message)
+    schedule.every().saturday.at("17:15").do(think_ten_ideas_send_message) 
+
+    schedule.every().monday.at("10:15").do(tio_for_week_message)  
+    schedule.every().wednesday.at("10:15").do(tio_for_week_message)  
+    schedule.every().saturday.at("10:15").do(tio_for_week_message)  
+    
     
     while True:
         schedule.run_pending()
