@@ -2,7 +2,20 @@ import os
 import slack
 import schedule
 import time
+import random
 from threading import Thread
+
+
+quote_list = []
+
+
+with open('quotes', 'r') as file:
+    quote_list = file.readlines()
+   
+    quote_list = [line.strip() for line in quote_list]
+
+
+
 
 TIO_FOR_WEEK = ''
 
@@ -35,8 +48,19 @@ def tio(**payload):
 def tio_push_notifs():
 
     client = slack.WebClient(token=slack_token)
-     
 
+
+    def relay_strength_quote():
+        #print('tio for week is :' ,TIO_FOR_WEEK)
+        pick_quote = random.choice(quote_list)
+        tism = client.chat_postMessage(
+        channel='DQV2E35LG',
+        text=f""+pick_quote+""
+    )
+
+
+     
+    '''
     def think_ten_ideas_send_message():
         print('tio for week is :' ,TIO_FOR_WEEK) 
         tism = client.chat_postMessage(
@@ -45,7 +69,7 @@ def tio_push_notifs():
     )
 
         assert tism['ok']
-        #assert tism['message']['text'] == 'Think about 10 ideas on how to use scheduled codes...!'
+    
 
     def tio_for_week_message():
         tfwm = client.chat_postMessage(
@@ -55,17 +79,26 @@ def tio_push_notifs():
 
         assert tfwm['ok']
         assert tfwm['message']['text'] == 'Deeps, whats the Tio for the week, eh?'
+    '''
+
+    #the server is at +5:30
 
 
-    schedule.every().monday.at("17:15").do(think_ten_ideas_send_message)
-    schedule.every().wednesday.at("17:15").do(think_ten_ideas_send_message)
-    schedule.every().saturday.at("17:15").do(think_ten_ideas_send_message) 
+    schedule.every().day.at("23:50").do(relay_strength_quote)
+    schedule.every().day.at("8:30").do(relay_strength_quote)
+    schedule.every().day.at("12:00").do(relay_strength_quote)
+    schedule.every().day.at("18:50").do(relay_strength_quote)
 
-    schedule.every().monday.at("10:15").do(tio_for_week_message)  
-    schedule.every().wednesday.at("10:15").do(tio_for_week_message)  
-    schedule.every().saturday.at("10:15").do(tio_for_week_message)  
+    #schedule.every().monday.at("12:15").do(think_ten_ideas_send_message)
+   
+
+    #schedule.every().monday.at("5:15").do(tio_for_week_message) 
+
     
-    
+
+
+
+
     while True:
         schedule.run_pending()
         time.sleep(1)
