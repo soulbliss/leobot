@@ -55,7 +55,7 @@ def tio_push_notifs():
         pick_quote = random.choice(quote_list)
         tism = client.chat_postMessage(
         channel='DQV2E35LG',
-        text=f""+pick_quote+""
+        text=f""+pick_quote+"",
     )
 
 
@@ -85,6 +85,7 @@ def tio_push_notifs():
 
 
     schedule.every().day.at("23:50").do(relay_strength_quote)
+    schedule.every().day.at("01:33").do(relay_strength_quote)
     schedule.every().day.at("8:30").do(relay_strength_quote)
     schedule.every().day.at("12:00").do(relay_strength_quote)
     schedule.every().day.at("18:50").do(relay_strength_quote)
