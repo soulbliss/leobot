@@ -86,7 +86,7 @@ def tio_push_notifs():
 
     schedule.every().day.at("23:50").do(relay_strength_quote)
     schedule.every().day.at("01:33").do(relay_strength_quote)
-    schedule.every().day.at("8:30").do(relay_strength_quote)
+    schedule.every().day.at("08:30").do(relay_strength_quote)
     schedule.every().day.at("12:00").do(relay_strength_quote)
     schedule.every().day.at("18:50").do(relay_strength_quote)
 
