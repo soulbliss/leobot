@@ -54,7 +54,7 @@ def tio_push_notifs():
         #print('tio for week is :' ,TIO_FOR_WEEK)
         pick_quote = random.choice(quote_list)
         tism = client.chat_postMessage(
-        channel='DQV2E35LG',
+        channel='C014EQ2GREX',
         text=f""+pick_quote+"",
     )
 
