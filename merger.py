@@ -113,6 +113,3 @@ if __name__ == "__main__":
 
     rtm_client = slack.RTMClient(token=slack_token)
     rtm_client.start()
-    
-
-
